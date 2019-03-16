@@ -19,9 +19,28 @@ import {
   nextQuiz,
   restartGame
 } from './store/actions/appActions'
+import { Status } from './components/Status'
+import { Score } from './components/Score'
+import { Header } from './components/Header'
+
+const AppContainer = styled('div')`
+  max-width: 600px;
+  margin: 0 auto;
+`
 
 const Container = styled('div')`
   display: flex;
+  justify-content: center;
+  max-width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  & > div {
+    margin: 8px;
+  }
+`
+
+const StatusContainer = styled(Container)`
+  margin-bottom: 0px;
 `
 
 class App extends Component<
@@ -49,23 +68,26 @@ class App extends Component<
       streak
     } = this.props
     const [current, total] = this.props.currentProgress
+    const streakBonus = Math.pow(streak, 2) * 0.01 * 200
     const item = selectItem(currentItem)
     return (
-      <div>
-        <h2>Dota Quiz</h2>
-        <h3>Score: {score} points</h3>
-        <h3>Tries: {tries} left</h3>
-        <h3>
-          Streak: {streak} (+{Math.pow(streak, 2) * 0.01 * 200})
-        </h3>
-        <h3>
-          {current} of {total}
-        </h3>
-
-        <Item
-          img={process.env.REACT_APP_CDN_URL + item.img}
-          name={item.dname}
+      <AppContainer>
+        <Header
+          triesLeft={tries}
+          streak={streak}
+          streakBonus={streakBonus}
+          currentCount={current}
+          totalCount={total}
         />
+        <StatusContainer>
+          <Status gameState={gameState} nextHandler={this.nextChoice} />
+        </StatusContainer>
+        <Container>
+          <Item
+            img={process.env.REACT_APP_CDN_URL + item.img}
+            name={item.dname}
+          />
+        </Container>
         <Container>
           {guesses.map((guess, index) => {
             if (guess !== null) {
@@ -74,6 +96,7 @@ class App extends Component<
                 <Item
                   img={process.env.REACT_APP_CDN_URL + item.img}
                   name={item.dname}
+                  gameOver={gameState === 'GAME_OVER'}
                   onClick={() => this.props.removeGuess(index)}
                 />
               )
@@ -96,13 +119,13 @@ class App extends Component<
             )
           })}
         </Container>
-        <button disabled={gameState !== 'SUCCESS'} onClick={this.nextChoice}>
-          NEXT
-        </button>
         <button disabled={gameState !== 'GAME_OVER'} onClick={this.restartGame}>
           RESTART
         </button>
-      </div>
+        <Container>
+          <Score score={score} />
+        </Container>
+      </AppContainer>
     )
   }
 }

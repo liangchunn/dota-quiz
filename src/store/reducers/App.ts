@@ -75,6 +75,9 @@ export const appReducer = (
             draft.tries = draft.tries - 1
             if (draft.tries === 0) {
               draft.gameState = 'GAME_OVER'
+              draft.guesses = prevState.answer.map(answer =>
+                prevState.choices.indexOf(answer)
+              )
             } else {
               draft.gameState = 'FAIL'
             }
