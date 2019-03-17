@@ -1,5 +1,5 @@
-import { allItems } from './transformODotaConstants'
+import { allItemsById } from './transformODotaConstantsById'
 
-export const selectItem = (key: string) => {
-  return allItems.itemByKey[key]
+export const selectItemById = (id: string) => {
+  return allItemsById.itemsById[id]
 }

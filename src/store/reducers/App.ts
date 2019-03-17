@@ -3,13 +3,13 @@ import { shuffle, difference } from 'lodash'
 import { Store } from '../../types/Store'
 import { ActionWithPayload, Action } from '../../types/ActionHelpers'
 import { AppActionTypes } from '../../types/ActionTypes'
-import { itemsWithComponents } from '../../util/transformODotaConstants'
 import { generateChoice } from '../game/generateChoice'
 import { BASE_POINTS } from '../../util/constants'
 import { calculateStreakBonus } from '../../util/streakBonus'
+import { itemsWithComponentsById } from '../../util/transformODotaConstantsById'
 
 const getDefaultState = (): Store.App => {
-  const itemList = shuffle(itemsWithComponents.keys)
+  const itemList = shuffle(itemsWithComponentsById.ids)
   const choiceLength = 8
   const choice = generateChoice(itemList[0], choiceLength)
   return {

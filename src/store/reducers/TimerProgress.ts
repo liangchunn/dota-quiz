@@ -20,6 +20,7 @@ export const timerProgressReducer = (
       case AppActionTypes.SELECT_GAME_MODE:
       case AppActionTypes.CLEAR_GAME_MODE: {
         draft.progress = 100
+        return
       }
       case TimerProgressActionTypes.SET_PROGRESS: {
         draft.progress = action.payload

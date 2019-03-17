@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { GameOverScreen } from '../GameOverScreen'
 import Item from '../Item'
-import { selectItem } from '../../util/selectItemData'
+import { selectItemById } from '../../util/selectItemData'
 import { Status } from '../Status'
 import { Score } from '../Score'
 import { connect } from 'react-redux'
@@ -73,7 +73,7 @@ class Game extends React.Component<
     } = this.props
     const [current, total] = this.props.currentProgress
     const streakBonus = calculateStreakBonus(streak)
-    const item = selectItem(currentItem)
+    const item = selectItemById(currentItem)
     return (
       <div>
         <Header
@@ -100,7 +100,7 @@ class Game extends React.Component<
             }
             answerElement={guesses.map(guess => {
               if (guess !== null) {
-                const item = selectItem(guess)
+                const item = selectItemById(guess)
                 return (
                   <Item
                     img={process.env.REACT_APP_CDN_URL + item.img}
@@ -133,7 +133,7 @@ class Game extends React.Component<
         <Container>
           {guesses.map((guess, index) => {
             if (guess !== null) {
-              const item = selectItem(guess)
+              const item = selectItemById(guess)
               return (
                 <Item
                   img={process.env.REACT_APP_CDN_URL + item.img}
@@ -148,7 +148,7 @@ class Game extends React.Component<
         </Container>
         <Container>
           {choices.map((choice, index) => {
-            const item = selectItem(choice)
+            const item = selectItemById(choice)
             return (
               <Item
                 img={process.env.REACT_APP_CDN_URL + item.img}
