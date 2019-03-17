@@ -1,6 +1,8 @@
 import React, { memo, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
+import { sample } from 'lodash'
 import { Store } from '../../types/Store'
+import { ENCOURAGEMENT_TEXT } from '../../util/constants'
 
 type Props = {
   gameState: Store.App['gameState']
@@ -8,38 +10,26 @@ type Props = {
 }
 
 const StateKeyFrames = keyframes`
-  from {
+  0% {
     transform: translateY(0);
     opacity: 1;
   }
-  to {
+  50% {
+    opacity: 1;
+  }
+  100% {
     transform: translateY(-30px);
     opacity: 0;
-  }
-`
-
-const GameOverKeyFrames = keyframes`
-  from {
-    transform: scale(3);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
   }
 `
 
 const State = styled('div')`
   display: block;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.5rem;
   opacity: 0;
+  margin: 0;
   animation: ${StateKeyFrames} 0.5s linear;
-`
-
-const GameOverState = styled(State)`
-  opacity: 1;
-  animation ${GameOverKeyFrames} 1s ease;
 `
 
 export const Status = memo(function(
@@ -56,11 +46,9 @@ export const Status = memo(function(
 
   switch (props.gameState) {
     case 'SUCCESS':
-      return <State>Correct!</State>
+      return <State>{sample(ENCOURAGEMENT_TEXT)}</State>
     case 'FAIL':
       return <State>Wrong!</State>
-    case 'GAME_OVER':
-      return <GameOverState>Game Over!</GameOverState>
     default:
       return <State key={'None'}> ‏‏‎ </State>
   }

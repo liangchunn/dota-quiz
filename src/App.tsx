@@ -22,6 +22,7 @@ import {
 import { Status } from './components/Status'
 import { Score } from './components/Score'
 import { Header } from './components/Header'
+import { GameOverScreen } from './components/GameOverScreen'
 
 const AppContainer = styled('div')`
   max-width: 600px;
@@ -33,13 +34,15 @@ const Container = styled('div')`
   justify-content: center;
   max-width: 100%;
   flex-wrap: wrap;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   & > div {
     margin: 8px;
   }
 `
 
-const StatusContainer = styled(Container)`
+const StatusContainer = styled('div')`
+  display: flex;
+  justify-content: center;
   margin-bottom: 0px;
 `
 
@@ -47,14 +50,10 @@ class App extends Component<
   ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
 > {
   nextChoice = () => {
-    if (this.props.gameState === 'SUCCESS') {
-      this.props.nextQuiz()
-    }
+    this.props.nextQuiz()
   }
   restartGame = () => {
-    if (this.props.gameState === 'GAME_OVER') {
-      this.props.restartGame()
-    }
+    this.props.restartGame()
   }
   render() {
     const {
@@ -65,7 +64,8 @@ class App extends Component<
       gameState,
       score,
       tries,
-      streak
+      streak,
+      highestStreak
     } = this.props
     const [current, total] = this.props.currentProgress
     const streakBonus = Math.pow(streak, 2) * 0.01 * 200
@@ -79,6 +79,34 @@ class App extends Component<
           currentCount={current}
           totalCount={total}
         />
+        {(gameState === 'GAME_OVER' || gameState === 'GAME_WON') && (
+          <GameOverScreen
+            score={score}
+            highestStreak={highestStreak}
+            currentCount={current}
+            handleRestart={this.restartGame}
+            gameState={gameState}
+            currentItemElement={
+              <Item
+                img={process.env.REACT_APP_CDN_URL + item.img}
+                name={item.dname}
+              />
+            }
+            answerElement={guesses.map(guess => {
+              if (guess !== null) {
+                const item = selectItem(guess)
+                return (
+                  <Item
+                    img={process.env.REACT_APP_CDN_URL + item.img}
+                    name={item.dname}
+                  />
+                )
+              } else {
+                return <Item img={''} name={''} />
+              }
+            })}
+          />
+        )}
         <StatusContainer>
           <Status gameState={gameState} nextHandler={this.nextChoice} />
         </StatusContainer>
@@ -96,7 +124,6 @@ class App extends Component<
                 <Item
                   img={process.env.REACT_APP_CDN_URL + item.img}
                   name={item.dname}
-                  gameOver={gameState === 'GAME_OVER'}
                   onClick={() => this.props.removeGuess(index)}
                 />
               )
@@ -108,7 +135,6 @@ class App extends Component<
         <Container>
           {choices.map((choice, index) => {
             const item = selectItem(choice)
-            console.log(guesses)
             return (
               <Item
                 img={process.env.REACT_APP_CDN_URL + item.img}
@@ -119,9 +145,6 @@ class App extends Component<
             )
           })}
         </Container>
-        <button disabled={gameState !== 'GAME_OVER'} onClick={this.restartGame}>
-          RESTART
-        </button>
         <Container>
           <Score score={score} />
         </Container>
@@ -143,6 +166,7 @@ const mapStateToProps = (state: Store.All) => ({
   score: state.App.score,
   tries: state.App.tries,
   streak: state.App.streak,
+  highestStreak: state.App.highestStreak,
   currentItem: selectCurrentItem(state),
   choices: selectCurrentChoices(state),
   guesses: selectCurrentGuessState(state),

@@ -14,9 +14,10 @@ export function generateChoice(item: string, choiceLength: number) {
     choiceSize = components.length + 1
   }
   // now we do a set negation on the shuffle stock and the item's component
-  const diff = difference(shuffleStock, components)
+  const diff = difference(shuffleStock, components, [item])
   // and then we sample the set for (choiceSize - component length) items
   const choices = sampleSize(diff, choiceSize - components.length)
+
   return {
     choices: shuffle([...components, ...choices]) as string[],
     answer: components as string[]

@@ -2,8 +2,8 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 const Icon = styled('div')<{ img: string; disabled: boolean }>`
-  width: 85px;
-  height: 65px;
+  width: 77px;
+  height: 59px;
   background-image: url(${props => props.img});
   background-position: center;
   background-size: cover;
@@ -15,25 +15,17 @@ const Icon = styled('div')<{ img: string; disabled: boolean }>`
 const NameTag = styled('span')`
   padding: 4px;
   text-shadow: 0px 0px 2px black;
-
   position: absolute;
   bottom: 0px;
   font-weight: bold;
-  font-size: 0.75rem;
+  font-size: 0.66rem;
   color: white;
   user-select: none;
 `
 
-const Wrapper = styled('div')<{ gameOver: boolean }>`
+const Wrapper = styled('div')`
   position: relative;
-  ${props =>
-    props.gameOver
-      ? css`
-          border: 2px solid red;
-        `
-      : css`
-          border: 2px solid black;
-        `}
+  border: 2px solid black;
   border-radius: 4px;
 `
 
@@ -42,7 +34,6 @@ type Props = {
   name: string
   onClick?: any
   disabled?: boolean
-  gameOver?: boolean
 }
 
 function Item(props: Props): React.FunctionComponentElement<Props> {
@@ -52,7 +43,7 @@ function Item(props: Props): React.FunctionComponentElement<Props> {
     }
   }
   return (
-    <Wrapper gameOver={!!props.gameOver}>
+    <Wrapper>
       <Icon img={props.img} onClick={handleClick} disabled={!!props.disabled}>
         <NameTag>{props.name}</NameTag>
       </Icon>

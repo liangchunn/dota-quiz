@@ -21,7 +21,7 @@ const ScoreKeyFrames = keyframes`
 const ScoreLabel = styled('div')`
   font-weight: 700;
   animation: ${ScoreKeyFrames} 0.5s ease;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 `
 
 export const Score = memo(function(

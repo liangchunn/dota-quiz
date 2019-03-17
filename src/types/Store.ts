@@ -9,9 +9,10 @@ export namespace Store {
     guesses: (number | null)[]
     score: number
     choiceLength: number
-    gameState: 'WAITING' | 'SUCCESS' | 'FAIL' | 'GAME_OVER'
+    gameState: 'WAITING' | 'SUCCESS' | 'FAIL' | 'GAME_OVER' | 'GAME_WON'
     tries: number
     streak: number
+    highestStreak: number
   }
   export interface All {
     App: App

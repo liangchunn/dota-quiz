@@ -8,7 +8,7 @@ import { generateChoice } from '../game/generateChoice'
 
 const getDefaultState = (): Store.App => {
   const itemList = shuffle(itemsWithComponents.keys)
-  const choiceLength = 6
+  const choiceLength = 8
   const choice = generateChoice(itemList[0], choiceLength)
   return {
     itemList,
@@ -20,7 +20,8 @@ const getDefaultState = (): Store.App => {
     choiceLength,
     gameState: 'WAITING',
     tries: 3,
-    streak: 0
+    streak: 0,
+    highestStreak: 0
   }
 }
 
@@ -38,6 +39,10 @@ export const appReducer = (
           prevState.gameState === 'FAIL' ||
           prevState.gameState === 'GAME_OVER'
         ) {
+          return
+        }
+        if (prevState.currentIndex === prevState.itemList.length - 1) {
+          draft.gameState = 'GAME_WON'
           return
         }
         const choice = generateChoice(
@@ -71,6 +76,9 @@ export const appReducer = (
             draft.score =
               draft.score + 200 + Math.pow(prevState.streak, 2) * 0.01 * 200
             draft.streak = draft.streak + 1
+            if (draft.streak > draft.highestStreak) {
+              draft.highestStreak = draft.streak
+            }
           } else {
             draft.tries = draft.tries - 1
             if (draft.tries === 0) {

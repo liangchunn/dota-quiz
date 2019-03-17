@@ -154,9 +154,10 @@ for (const key of allItems.keys) {
     for (const c of component) {
       usageMap[c] = usageMap[c] + 1
     }
-  } else {
-    usageMap[key] = usageMap[key] + 1
   }
+  // } else {
+  // usageMap[key] = usageMap[key] + 1
+  // }
 }
 
 export const shuffleStock = Object.keys(usageMap).reduce(

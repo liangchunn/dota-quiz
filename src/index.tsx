@@ -5,9 +5,11 @@ import App from './App'
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
 import { store } from './store'
+import { SuperHeader } from './components/SuperHeader'
 
 ReactDOM.render(
   <Provider store={store}>
+    <SuperHeader />
     <App />
   </Provider>,
   document.getElementById('root')
