@@ -3,6 +3,8 @@ import { Store } from '../../types/Store'
 import styled, { keyframes } from 'styled-components'
 import { sample } from 'lodash'
 import { LOSE_TEXT, WIN_TEXT } from '../../util/constants'
+import { ModalWrapper, Modal } from '../Modal'
+import { getGameModeString } from '../../util/getGameModeString'
 
 type Props = {
   score: Store.App['score']
@@ -10,12 +12,14 @@ type Props = {
   gameState: Store.App['gameState']
   currentCount: number
   handleRestart: () => any
+  handleModeReselect: () => any
   children?: React.ReactNode
   currentItemElement: JSX.Element
   answerElement: JSX.Element[]
+  gameMode: Store.App['gameMode']
 }
 
-const WrapperKeyFrames = keyframes`
+const GameOverWrapperKeyFrames = keyframes`
   from {
     opacity: 0;
   }
@@ -24,7 +28,7 @@ const WrapperKeyFrames = keyframes`
   }
 `
 
-const ModalKeyFrames = keyframes`
+const GameOverModalKeyFrames = keyframes`
   from {
     transform: scale(0.75);
     opacity: 0;
@@ -35,33 +39,17 @@ const ModalKeyFrames = keyframes`
   }
 `
 
-const Wrapper = styled('div')`
+const GameOverWrapper = styled(ModalWrapper)`
   transform-origin: top center;
-  animation: ${WrapperKeyFrames} 0.5s ease;
-  display: flex;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  flex-direction: column;
-  background-color: white;
+  animation: ${GameOverWrapperKeyFrames} 0.5s ease;
 `
 
-const Modal = styled('div')`
-  margin: 0 auto;
-  display: flex;
-  // width: 400px;
-  padding: 16px;
-  flex-direction: column;
-  align-items: center;
-  animation: ${ModalKeyFrames} 0.5s ease;
+const GameOverModal = styled(Modal)`
+  animation: ${GameOverModalKeyFrames} 0.5s ease;
 `
 
 const Title = styled('h1')`
-  margin: 0 0 16px 0;
+  margin: 0 0 8px 0;
   text-align: center;
 `
 
@@ -76,6 +64,11 @@ const Label = styled('p')`
   color: grey;
   font-weight: 500;
   font-size: 0.75rem;
+`
+
+const GameModeLabel = styled(Label)`
+  color: black;
+  margin-bottom: 8px;
 `
 
 const BoxWrapper = styled('div')`
@@ -95,6 +88,7 @@ const RetryButton = styled('button')`
   border: 2px solid black;
   font-size: 1.5rem;
   border-radius: 4px;
+  margin: 8px;
 `
 
 const ItemsWrapper = styled('div')`
@@ -120,13 +114,14 @@ export function GameOverScreen(
   props: Props
 ): React.FunctionComponentElement<Props> {
   return (
-    <Wrapper>
-      <Modal>
+    <GameOverWrapper>
+      <GameOverModal>
         <Title>
           {props.gameState === 'GAME_OVER'
             ? sample(LOSE_TEXT)
             : sample(WIN_TEXT)}
         </Title>
+        <GameModeLabel>MODE: {getGameModeString(props.gameMode)}</GameModeLabel>
         {props.gameState === 'GAME_OVER' && (
           <ItemsWrapper>
             <Items>{props.currentItemElement}</Items>
@@ -155,7 +150,10 @@ export function GameOverScreen(
         <RetryButton onClick={props.handleRestart}>
           {props.gameState === 'GAME_OVER' ? 'Retry' : 'Start Over'}
         </RetryButton>
-      </Modal>
-    </Wrapper>
+        <RetryButton onClick={props.handleModeReselect}>
+          Change Game Mode
+        </RetryButton>
+      </GameOverModal>
+    </GameOverWrapper>
   )
 }

@@ -13,8 +13,13 @@ export namespace Store {
     tries: number
     streak: number
     highestStreak: number
+    gameMode: 'NONE' | 'CLASSIC' | 'HARDCORE_CLASSIC' | 'TIMED'
+  }
+  export interface TimerProgress {
+    progress: number
   }
   export interface All {
     App: App
+    TimerProgress: TimerProgress
   }
 }
