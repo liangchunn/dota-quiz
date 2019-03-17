@@ -1,13 +1,13 @@
 {
   "main.css": "/dota-quiz/static/css/main.24ef8c21.chunk.css",
-  "main.js": "/dota-quiz/static/js/main.06505c94.chunk.js",
-  "main.js.map": "/dota-quiz/static/js/main.06505c94.chunk.js.map",
+  "main.js": "/dota-quiz/static/js/main.7218a521.chunk.js",
+  "main.js.map": "/dota-quiz/static/js/main.7218a521.chunk.js.map",
   "runtime~main.js": "/dota-quiz/static/js/runtime~main.85622311.js",
   "runtime~main.js.map": "/dota-quiz/static/js/runtime~main.85622311.js.map",
-  "static/js/2.b5db31d9.chunk.js": "/dota-quiz/static/js/2.b5db31d9.chunk.js",
-  "static/js/2.b5db31d9.chunk.js.map": "/dota-quiz/static/js/2.b5db31d9.chunk.js.map",
+  "static/js/2.ea9c7f7e.chunk.js": "/dota-quiz/static/js/2.ea9c7f7e.chunk.js",
+  "static/js/2.ea9c7f7e.chunk.js.map": "/dota-quiz/static/js/2.ea9c7f7e.chunk.js.map",
   "index.html": "/dota-quiz/index.html",
-  "precache-manifest.07bcf1b9bd3b84d02e5a99a6393dc07d.js": "/dota-quiz/precache-manifest.07bcf1b9bd3b84d02e5a99a6393dc07d.js",
+  "precache-manifest.f804dad921e42eda1d57124951a71824.js": "/dota-quiz/precache-manifest.f804dad921e42eda1d57124951a71824.js",
   "service-worker.js": "/dota-quiz/service-worker.js",
   "static/css/main.24ef8c21.chunk.css.map": "/dota-quiz/static/css/main.24ef8c21.chunk.css.map"
 }
