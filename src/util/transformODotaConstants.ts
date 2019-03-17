@@ -105,6 +105,10 @@ normalizeSanitizedItems['recipe'] = {
   components: null
 }
 
+// use new sny icon
+normalizeSanitizedItems['sange_and_yasha'].img =
+  '/apps/dota2/images/items/sange_and_yasha_lg.png'
+
 export const allItems = {
   keys: Object.keys(normalizeSanitizedItems),
   itemByKey: normalizeSanitizedItems
