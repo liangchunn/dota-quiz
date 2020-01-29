@@ -1,4 +1,7 @@
-import { includes, remove, times, constant } from 'lodash'
+import includes from 'lodash/includes'
+import remove from 'lodash/remove'
+import constant from 'lodash/constant'
+import times from 'lodash/times'
 import { items as DotaConstantsItems } from 'dotaconstants'
 
 const excludeIds = [
@@ -91,8 +94,9 @@ const normalizeSanitizedItems = sanitizedItems.reduce(
 for (const key of itemsWithRecipe) {
   // check if the item which the recipe belongs to exists in the normalized set
   // this is because we might have already filtered it out
-  if (normalizeSanitizedItems[key]) {
-    normalizeSanitizedItems[key].components!.push('recipe')
+  const item = normalizeSanitizedItems[key]
+  if (item && item.components !== null) {
+    item.components.push('recipe')
   }
 }
 

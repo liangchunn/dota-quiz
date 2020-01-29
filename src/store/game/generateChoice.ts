@@ -1,4 +1,6 @@
-import { difference, sampleSize, shuffle } from 'lodash'
+import difference from 'lodash/difference'
+import sampleSize from 'lodash/sampleSize'
+import shuffle from 'lodash/shuffle'
 import {
   itemsWithComponentsById,
   shuffleStockById

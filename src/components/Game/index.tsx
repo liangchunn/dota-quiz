@@ -139,10 +139,11 @@ class Game extends React.Component<
                   img={process.env.REACT_APP_CDN_URL + item.img}
                   name={item.dname}
                   onClick={() => this.props.removeGuess(index)}
+                  key={`${item.id}-${index}`}
                 />
               )
             } else {
-              return <Item img={''} name={''} />
+              return <Item img={''} name={''} key={index} />
             }
           })}
         </Container>
@@ -155,6 +156,7 @@ class Game extends React.Component<
                 name={item.dname}
                 onClick={() => this.props.addGuess(index)}
                 disabled={!!~guessesIndex.indexOf(index)}
+                key={`${item.id}-${index}`}
               />
             )
           })}
@@ -192,7 +194,4 @@ const mapStateToProps = (state: Store.All) => ({
   currentProgress: selectCurrentProgress(state)
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Game)
+export default connect(mapStateToProps, mapDispatchToProps)(Game)

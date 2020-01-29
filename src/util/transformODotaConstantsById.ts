@@ -18,7 +18,9 @@ const transformToIdFromKeys = Object.keys(allItems.itemByKey).reduce(
     const id = allItems.itemByKey[key].id
     const item = allItems.itemByKey[key]
     const components = item.components
-      ? item.components.map(k => String(allItems.itemByKey[k].id))
+      ? item.components
+          .filter(k => Boolean(k))
+          .map(k => String(allItems.itemByKey[k].id))
       : null
     return {
       ...prev,
@@ -33,41 +35,37 @@ const transformToIdFromKeys = Object.keys(allItems.itemByKey).reduce(
 
 const transformItemsWithComponentsToId = Object.keys(
   itemsWithComponents.itemByKey
-).reduce(
-  (prev, key) => {
-    const id = itemsWithComponents.itemByKey[key].id
-    const item = itemsWithComponents.itemByKey[key]
-    const components = item.components
-      ? item.components.map(k => String(allItems.itemByKey[k].id))
-      : null
-    return {
-      ...prev,
-      [id]: {
-        ...item,
-        components
-      }
+).reduce((prev, key) => {
+  const id = itemsWithComponents.itemByKey[key].id
+  const item = itemsWithComponents.itemByKey[key]
+  const components = item.components
+    ? item.components
+        .filter(k => Boolean(k))
+        .map(k => String(allItems.itemByKey[k].id))
+    : null
+  return {
+    ...prev,
+    [id]: {
+      ...item,
+      components
     }
-  },
-  {} as ItemDataById
-)
+  }
+}, {} as ItemDataById)
 
 const transformItemsWithoutComponentsToId = Object.keys(
   itemsWithoutComponents.itemByKey
-).reduce(
-  (prev, key) => {
-    const id = itemsWithoutComponents.itemByKey[key].id
-    const item = itemsWithoutComponents.itemByKey[key]
-    const components = null
-    return {
-      ...prev,
-      [id]: {
-        ...item,
-        components
-      }
+).reduce((prev, key) => {
+  const id = itemsWithoutComponents.itemByKey[key].id
+  const item = itemsWithoutComponents.itemByKey[key]
+  const components = null
+  return {
+    ...prev,
+    [id]: {
+      ...item,
+      components
     }
-  },
-  {} as ItemDataById
-)
+  }
+}, {} as ItemDataById)
 
 function getShuffleStock() {
   const usageMap: Record<string, number> = {}

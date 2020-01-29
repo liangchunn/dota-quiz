@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
-import { sample } from 'lodash'
+import sample from 'lodash/sample'
 import { Store } from '../../types/Store'
 import { ENCOURAGEMENT_TEXT } from '../../util/constants'
 
@@ -35,14 +35,15 @@ const State = styled('div')`
 export const Status = memo(function(
   props: Props
 ): React.FunctionComponentElement<Props> {
+  const { gameState, nextHandler } = props
   useEffect(() => {
-    if (props.gameState === 'SUCCESS') {
+    if (gameState === 'SUCCESS') {
       const timeout = setTimeout(() => {
         clearTimeout(timeout)
-        props.nextHandler()
+        nextHandler()
       }, 750)
     }
-  }, [props.gameState])
+  }, [gameState, nextHandler])
 
   switch (props.gameState) {
     case 'SUCCESS':

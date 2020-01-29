@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { TIMER_BASE_TIME_MS } from '../../util/constants'
-import styled from 'styled-components'
 import { Store } from '../../types/Store'
 
 const TICK_INTERVAL = 100
@@ -11,11 +10,6 @@ type Props = {
   reduceTries: () => any
   setProgress: (progress: number) => any
 }
-
-const TimerLabel = styled('code')`
-  display: block;
-  font-size: 1.25rem;
-`
 
 export function Timer(props: Props): React.FunctionComponentElement<Props> {
   const [prevTries, setPrevTries] = useState<null | number>(null)

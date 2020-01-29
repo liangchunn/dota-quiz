@@ -1,5 +1,6 @@
 import produce from 'immer'
-import { shuffle, difference } from 'lodash'
+import shuffle from 'lodash/shuffle'
+import difference from 'lodash/difference'
 import { Store } from '../../types/Store'
 import { ActionWithPayload, Action } from '../../types/ActionHelpers'
 import { AppActionTypes } from '../../types/ActionTypes'
@@ -98,6 +99,7 @@ export const appReducer = (
         draft.choices = choice.choices
         draft.answer = choice.answer
         draft.guesses = choice.answer.map(_ => null)
+        return
       }
       case AppActionTypes.ADD_GUESS: {
         if (
@@ -113,8 +115,10 @@ export const appReducer = (
         // check if the board is full and check if the answer is correct
         if (!~draft.guesses.indexOf(null) && draft.gameState === 'WAITING') {
           if (
-            difference(draft.guesses.map(d => draft.choices[d!]), draft.answer)
-              .length === 0
+            difference(
+              draft.guesses.map(d => draft.choices[d!]),
+              draft.answer
+            ).length === 0
           ) {
             draft.gameState = 'SUCCESS'
             draft.score =

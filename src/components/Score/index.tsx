@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Store } from '../../types/Store'
 

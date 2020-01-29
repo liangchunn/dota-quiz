@@ -1,7 +1,7 @@
 import React from 'react'
 import { Store } from '../../types/Store'
 import styled, { keyframes } from 'styled-components'
-import { sample } from 'lodash'
+import sample from 'lodash/sample'
 import { LOSE_TEXT, WIN_TEXT } from '../../util/constants'
 import { ModalWrapper, Modal } from '../Modal'
 import { getGameModeString } from '../../util/getGameModeString'
