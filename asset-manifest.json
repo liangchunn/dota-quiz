@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/dota-quiz/static/css/main.64ed7512.chunk.css",
-    "main.js": "/dota-quiz/static/js/main.47f82a31.chunk.js",
-    "main.js.map": "/dota-quiz/static/js/main.47f82a31.chunk.js.map",
-    "runtime-main.js": "/dota-quiz/static/js/runtime-main.5f301ca8.js",
-    "runtime-main.js.map": "/dota-quiz/static/js/runtime-main.5f301ca8.js.map",
-    "static/js/2.e6007da9.chunk.js": "/dota-quiz/static/js/2.e6007da9.chunk.js",
-    "static/js/2.e6007da9.chunk.js.map": "/dota-quiz/static/js/2.e6007da9.chunk.js.map",
+    "main.css": "/dota-quiz/static/css/main.183ecc99.chunk.css",
+    "main.js": "/dota-quiz/static/js/main.2ec81ec0.chunk.js",
+    "main.js.map": "/dota-quiz/static/js/main.2ec81ec0.chunk.js.map",
+    "runtime-main.js": "/dota-quiz/static/js/runtime-main.6cfe953d.js",
+    "runtime-main.js.map": "/dota-quiz/static/js/runtime-main.6cfe953d.js.map",
+    "static/js/2.c0e05447.chunk.js": "/dota-quiz/static/js/2.c0e05447.chunk.js",
+    "static/js/2.c0e05447.chunk.js.map": "/dota-quiz/static/js/2.c0e05447.chunk.js.map",
     "index.html": "/dota-quiz/index.html",
-    "precache-manifest.feedad27725563d74e7f414a1db100dd.js": "/dota-quiz/precache-manifest.feedad27725563d74e7f414a1db100dd.js",
+    "precache-manifest.03548ff73547ea0096b64046efa0be83.js": "/dota-quiz/precache-manifest.03548ff73547ea0096b64046efa0be83.js",
     "service-worker.js": "/dota-quiz/service-worker.js",
-    "static/css/main.64ed7512.chunk.css.map": "/dota-quiz/static/css/main.64ed7512.chunk.css.map",
-    "static/js/2.e6007da9.chunk.js.LICENSE": "/dota-quiz/static/js/2.e6007da9.chunk.js.LICENSE"
+    "static/css/main.183ecc99.chunk.css.map": "/dota-quiz/static/css/main.183ecc99.chunk.css.map",
+    "static/js/2.c0e05447.chunk.js.LICENSE.txt": "/dota-quiz/static/js/2.c0e05447.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.5f301ca8.js",
-    "static/js/2.e6007da9.chunk.js",
-    "static/css/main.64ed7512.chunk.css",
-    "static/js/main.47f82a31.chunk.js"
+    "static/js/runtime-main.6cfe953d.js",
+    "static/js/2.c0e05447.chunk.js",
+    "static/css/main.183ecc99.chunk.css",
+    "static/js/main.2ec81ec0.chunk.js"
   ]
 }
