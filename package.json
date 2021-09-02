@@ -5,7 +5,7 @@
   "homepage": "https://liangchunn.github.io/dota-quiz",
   "dependencies": {
     "dotaconstants": "^6.34.0",
-    "immer": "^6.0.5",
+    "immer": "^9.0.6",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
